@@ -1,6 +1,6 @@
-const fs = require('fs');
-const { Pool } = require('pg');
-const url = require('url');
+const fs = require('fs')
+const { Pool } = require('pg')
+const url = require('url')
 
 const pool = new Pool({
     user: process.env.DBUSER,
@@ -39,8 +39,8 @@ n0B2qqdwGxX7FTja/Bv3vOAeGCDuVhkHlzaZIiUXEW4bFe9MBg==
 })
 const connectdb = async () => {
     try {
-        await pool.connect();
-        console.log("Database Connected to PostgreSQL");
+        await pool.connect()
+        console.log("Database Connected to PostgreSQL")
     }
     catch (error) {
         console.log(error)

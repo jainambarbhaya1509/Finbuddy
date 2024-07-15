@@ -1,0 +1,33 @@
+---
+name: Chat Prompt
+description: A basic prompt that uses the chat API to answer questions
+model:
+    api: chat
+    configuration:
+        type: azure_openai
+    parameters:
+        max_tokens: 50
+        temperature: 0.2
+inputs:
+    chat_input:
+        type: string
+    chat_history:
+        type: list
+        is_chat_history: true
+        default: []
+outputs:   
+  response:
+    type: string
+sample:
+    chat_input: Guide me about my finances
+---
+system:
+You are an AI assistant who acts as an financial advisor
+
+{% for item in history %}
+{{item.role}}:
+{{item.content}}
+{% endfor %}
+
+user:
+{{chat_input}}

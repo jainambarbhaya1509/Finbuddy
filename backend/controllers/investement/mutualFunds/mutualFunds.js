@@ -15,15 +15,16 @@ const getMutualFunds = async (req, res) => {
         }
         const mutualValue = await redis.get(mutualName)
         if (mutualValue) {
-            console.log("DAta from redis");
+            console.log("DAta from redis")
             return res.send(JSON.parse(mutualValue))
         }
 
-        const dataFunds = await pool.query(`SELECT * FROM mutual_Funds WHERE scheme_name LIKE $1`, [`%${mutualName}%`]);
+        const dataFunds = await pool.query(`SELECT * FROM mutual_Funds WHERE scheme_name LIKE $1`, [`%${mutualName}%`])
+        if (dataFunds.rows!=null) return res.send("Not found") 
         redis.set(mutualName, JSON.stringify(dataFunds.rows))
         return res.send(dataFunds.rows)
     } catch (error) {
-        console.log(error);
+        console.log(error)
         return res.send(error)
 
     }
