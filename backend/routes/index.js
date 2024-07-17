@@ -7,6 +7,7 @@ const investementRoute = require('./investement');
 const transactionRoute = require('./transaction');
 const chatRoute = require('./chatBot');
 const validateUserMiddleware = require('../middleware/auth');
+const goalTrackRoute = require('./goalTrack');
 
 // Mount authRoute without middleware
 indexRoute.use('/auth', authRoute);
@@ -18,5 +19,6 @@ indexRoute.use(validateUserMiddleware);
 indexRoute.use('/investement', investementRoute);
 indexRoute.use('/transaction', transactionRoute);
 indexRoute.use('/chatBot', chatRoute);
+indexRoute.use('/goalTrack', goalTrackRoute);
 
 module.exports = indexRoute;

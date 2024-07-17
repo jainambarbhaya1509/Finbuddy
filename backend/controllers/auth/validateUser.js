@@ -22,7 +22,7 @@ const validateCredentials = async (token, pin) => {
         const userPin = findUser.rows[0].pin
         const isPasswordValid = comparePassword(`${pin}`, userPin) //pass pin as string
 
-        if (!isPasswordValid) {
+        if (isPasswordValid==false) {
             return { valid: false, error: "Invalid Credentials" }
         }
 

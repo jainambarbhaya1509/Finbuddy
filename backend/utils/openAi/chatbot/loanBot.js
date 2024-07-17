@@ -1,7 +1,7 @@
 const fs = require('fs');
 const dotenv = require('dotenv');
-const { pool } = require('../../config/dbConfig');
-const { openAi } = require('../../config/openAIConfig');
+const { pool } = require('../../../config/dbConfig');
+const { openAi } = require('../../../config/openAIConfig');
 
 dotenv.config();
 
@@ -13,7 +13,11 @@ const config = {
 // Function to fetch data from database
 const fetchDataFromDatabase = async (userId) => {
     try {
-        const { rows } = await pool.query('SELECT * FROM transaction WHERE account_id=$1', [userId]);
+        const { rows } = await pool.query(`
+      SELECT * FROM loan_type 
+      JOIN loan ON loan_type.id = loan.loan_type_id 
+      WHERE loan.account_id = $1`, [userId]);
+      console.log(rows);
         return rows;
     } catch (error) {
         console.error('Error fetching data from database:', error);
@@ -27,7 +31,7 @@ const getFinancialAdvice = async (chatInput) => {
         const response = await openAi.chat.completions.create({
             model: config.AZURE_CHAT_MODEL,
             messages: [{ role: 'user', content: chatInput }],
-            max_tokens: 150,
+            max_tokens: 50,
             temperature: 0.2
         });
 
@@ -42,11 +46,11 @@ const getFinancialAdvice = async (chatInput) => {
     }
 }
 
-const transactionBot = async (userId, userInput) => {
+const LoanBot = async (userId, userInput) => {
     try {
         const data = await fetchDataFromDatabase(userId);
 
-        const chatInput = `${userInput}, Here is the data: ${JSON.stringify(data)}`;
+        const chatInput = `${userInput},also state the reason of your advice, Here is the data of my loan: ${JSON.stringify(data)}`;
         const response = await getFinancialAdvice(chatInput);
 
         return { message: response, error: null }
@@ -56,4 +60,4 @@ const transactionBot = async (userId, userInput) => {
     }
 }
 
-module.exports = transactionBot;
+module.exports = LoanBot;

@@ -63,7 +63,10 @@ const mutualFundsPrompt = async (req, res) => {
                         ]
                     )
 
-                    return res.json(mutualData.rows) // Send the rows of the query result as JSON
+                    return res.send(mutualData.rows) 
+                }
+                else{
+                    return res.send({message:"I am an AI tool for mutual funds,please prompt specific to mutual funds"}) 
                 }
             } catch (parseError) {
                 // If parsing fails, fall through to returning the message directly
@@ -72,7 +75,7 @@ const mutualFundsPrompt = async (req, res) => {
         }
 
         // If the JSON object is irrelevant or not present, return the GPT response directly
-        return res.json({ message: gptResponse })
+        return res.send({message:"I am an AI tool for mutual funds,please prompt specific to mutual funds"}) 
     } catch (error) {
         console.error("Error:", error)
         res.sendStatus(500)

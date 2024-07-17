@@ -1,13 +1,13 @@
-const transactionBot = require("../../utils/openAi/chatbot/transactionBot");
 const getUserid = require('../../utils/getUserid')
+const LoanBot = require('../../utils/openAi/chatbot/loanBot')
 
-const TransactionPrompt = async (req, res) => {
+const loanPrompt = async (req, res) => {
     try {
         const token = req.headers.userauth
         const { userInput } = req.params
         const decodeData = getUserid(token)
 
-        const botResponse = await transactionBot(decodeData.id, userInput)
+        const botResponse = await LoanBot(decodeData.id, userInput)
         res.send(botResponse);
     } catch (error) {
         console.error('Error:', error);
@@ -15,4 +15,4 @@ const TransactionPrompt = async (req, res) => {
     }
 }
 
-module.exports = TransactionPrompt;
+module.exports = loanPrompt;

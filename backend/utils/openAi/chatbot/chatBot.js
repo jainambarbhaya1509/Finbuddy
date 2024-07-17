@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('yaml');
-const { openAi } = require('../../config/openAIConfig');
+const { openAi } = require('../../../config/openAIConfig');
 
 const promptyPath = path.resolve(__dirname, './chat.prompty');
 let prompty;
@@ -28,7 +28,7 @@ const getFinancialAdvice = async (chatInput) => {
 
   const userMessage = {
     role: 'user',
-    content: chatInput
+    content: `${chatInput} also state the reason of your advice`
   };
 
   const messages = [systemMessage, userMessage];
