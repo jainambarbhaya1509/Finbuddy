@@ -8,4 +8,4 @@ chatRoute.get('/chat/:userInput',chatPrompt)
 chatRoute.get('/transaction/:userInput',TransactionPrompt)
 chatRoute.get('/loans/:userInput',loanPrompt)
 
-module.exports=chatRoute;
+module.exports=chatRoute

@@ -1,9 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
-const { openAi } = require('../../../config/openAIConfig')
+const { openAi } = require('../../../../config/openAIConfig')
 
-const promptyPath = path.resolve(__dirname, './chat.prompty')
+const promptyPath = path.resolve(__dirname, '../../chatbot/chat.prompty')
 let prompty
 
 try {
@@ -15,7 +15,7 @@ try {
   throw error // Throw error to handle it in the caller or logging mechanism
 }
 
-const getFinancialAdvice = async (chatInput) => {
+const getFinancialAdviceOnSavingGoal = async (chatInput) => {
   if (!prompty || !prompty.model || !prompty.model.parameters) {
     console.error('Invalid prompty structure: model or parameters are missing or undefined.')
     return { message: null, error: 'Invalid prompty structure' }
@@ -28,7 +28,7 @@ const getFinancialAdvice = async (chatInput) => {
 
   const userMessage = {
     role: 'user',
-    content: `${chatInput} also state the reason of your advice`
+    content:  `I made a plan to achive my goal I want to achive in here is the data of it ${JSON.stringify(chatInput)}, cuurency unit:- ruppes(INR) time_frame unit:- days, is theplan feasible and recommend how to improve the plan give a specific answer in 150 words`
   }
 
   const messages = [systemMessage, userMessage]
@@ -36,12 +36,11 @@ const getFinancialAdvice = async (chatInput) => {
   try {
     const response = await openAi.chat.completions.create({
       messages: messages,
-      max_tokens: prompty.model.parameters.max_tokens,
+      max_tokens: 100,
       temperature: prompty.model.parameters.temperature,
     })
     if ( response.choices && response.choices.length > 0) {
       const generatedMessage = response.choices[0].message
-      console.log('Generated Message:', generatedMessage)
       return { message: generatedMessage.content, error: null }
     } else {
       console.log('No valid response received from the API.')
@@ -53,4 +52,4 @@ const getFinancialAdvice = async (chatInput) => {
   }
 }
 
-module.exports = getFinancialAdvice
+module.exports = getFinancialAdviceOnSavingGoal

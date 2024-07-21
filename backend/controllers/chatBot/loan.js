@@ -8,11 +8,11 @@ const loanPrompt = async (req, res) => {
         const decodeData = getUserid(token)
 
         const botResponse = await LoanBot(decodeData.id, userInput)
-        res.send(botResponse);
+        res.send(botResponse)
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).send({ error: error.message });
+        console.error('Error:', error)
+        res.status(500).send({ error: error.message })
     }
 }
 
-module.exports = loanPrompt;
+module.exports = loanPrompt

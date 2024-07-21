@@ -7,7 +7,6 @@ const mutualFundsPrompt = async (req, res) => {
         const promptResult = await mutualFundsGpt(userInput)
         const gptResponse = promptResult.choices[0].message.content
 
-        console.log("GPT Response:", gptResponse)
 
         // Function to extract JSON object from the GPT response
         const extractJson = (text) => {

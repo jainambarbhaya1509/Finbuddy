@@ -22,9 +22,8 @@ const validateCredentials = async (token) => {
 
 const validateUserMiddleware = async (req, res, next) => {
     try {
-        
         console.log("Auth middleWare")
-        console.log(req.headers)
+        console.log(`Userauth:  ${req.headers.userauth}`)
         const token = req.headers.userauth
         if (!token) return res.send({ valid: false, error: "NO token found" })
         const { valid, error } = await validateCredentials(token)

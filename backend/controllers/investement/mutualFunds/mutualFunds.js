@@ -15,7 +15,6 @@ const getMutualFunds = async (req, res) => {
         }
         const mutualValue = await redis.get(mutualName)
         if (mutualValue) {
-            console.log("DAta from redis")
             return res.send(JSON.parse(mutualValue))
         }
 

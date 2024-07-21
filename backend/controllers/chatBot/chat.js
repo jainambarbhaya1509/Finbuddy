@@ -12,7 +12,7 @@ const chatPrompt = async (req, res) => {
         redis.set(userInput,JSON.stringify(responseAdvice))
         return res.send(responseAdvice)
     } catch (error) {
-        console.log(error);
+        console.log(error)
         return res.status(500).send("Something went wrong")
     }
 }
