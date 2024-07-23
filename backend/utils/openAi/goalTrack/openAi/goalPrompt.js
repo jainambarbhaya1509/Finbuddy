@@ -1,4 +1,4 @@
-const { openAi } = require("../../../../config/openAIConfig");
+const { openAi } = require("../../../../config/openAIConfig")
 
 const GoalTrack = async (prompt) => {
   try {
@@ -55,17 +55,17 @@ const GoalTrack = async (prompt) => {
         { "role": "user", "content": prompt }
       ],
       max_tokens: 50
-    });
+    })
 
-    return result.choices[0].message.content;
+    return result.choices[0].message.content
   } catch (error) {
-    console.error("Error creating chat completion:", error);
+    console.error("Error creating chat completion:", error)
     return {
       goal_name: "",
       goal_amount: 0,
       time_frame: 0
-    };
+    }
   }
-};
+}
 
-module.exports = GoalTrack;
+module.exports = GoalTrack

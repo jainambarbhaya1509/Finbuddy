@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { pool } = require('../../config/dbConfig')
 const { comparePassword } = require('../../utils/helper')
+const getUserDetails = require('../../utils/getUserData')
 const tokenSecret = process.env.JWTTOKENSECRET
 const tokenOptions = {
     expiresIn: '24h',
@@ -12,7 +13,7 @@ const validateCredentials = async (accountNumber, pin) => {
             SELECT account.pin, account.id, customer.first_name, customer.last_name 
             FROM account 
             JOIN customer ON account.customer_id = customer.id 
-            WHERE account.account_number = $1`, 
+            WHERE account.account_number = $1`,
             [accountNumber]
         )
 
@@ -50,7 +51,9 @@ const createUser = async (req, res) => {
         }
 
         const token = generateToken(userId)
-        return res.status(200).send({ valid: true, token: token, name: userName })
+        const Userdetails = await getUserDetails(userId)
+        
+        return res.status(200).send({ ...Userdetails, valid: true, token: token, name: userName })
     } catch (error) {
         console.error(error)
         return res.status(500).send({ error: "Something went wrong" })

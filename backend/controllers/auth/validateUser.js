@@ -2,6 +2,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const { pool } = require('../../config/dbConfig')
 const { comparePassword } = require('../../utils/helper')
+const getUserDetails = require('../../utils/getUserData')
+const getUserid = require('../../utils/getUserid')
 
 const tokenSecret = process.env.JWTTOKENSECRET
 const options = {
@@ -13,7 +15,7 @@ const validateCredentials = async (token, pin) => {
         const decoded = jwt.verify(token, tokenSecret)
         const userId = decoded.id
 
-        const findUser = await pool.query("SELECT pin FROM account WHERE id=$1", [userId])
+        const findUser = await pool.query("SELECT pin,account_number FROM account WHERE id=$1", [userId])
 
         if (findUser.rows.length === 0) {
             return { valid: false, error: "Invalid Credentials" }
@@ -22,7 +24,7 @@ const validateCredentials = async (token, pin) => {
         const userPin = findUser.rows[0].pin
         const isPasswordValid = comparePassword(`${pin}`, userPin) //pass pin as string
 
-        if (isPasswordValid==false) {
+        if (isPasswordValid == false) {
             return { valid: false, error: "Invalid Credentials" }
         }
 
@@ -44,8 +46,9 @@ const validateUser = async (req, res) => {
         if (!valid) {
             return res.status(200).send({ valid: false, error: error })
         }
-
-        return res.status(200).send({ valid: true })
+        const { id } = getUserid(token)
+        const Userdetails = await getUserDetails(id)
+        return res.status(200).send({ ...Userdetails, valid: true, name: `${Userdetails.personal_details.first_name} ${Userdetails.personal_details.last_name}` })
     } catch (error) {
         console.error(error)
         return res.status(500).send({ error: "Something went wrong" })
