@@ -10,7 +10,7 @@
 - Additionally, integrating seamless budget management, comprehensive financial organization, expense tracking, goal setting, investment management, debt reduction strategies, real-time updates, educational resources, and enhanced financial security features are pivotal to delivering a holistic and convenient financial advisory experience. 
 
 ### What it does
-FinBuddy is an AI-powered chatbot interface that enables natural language interactions with bank accounts, facilitating intuitive financial management and empowering customers to achieve their financial objectives efficiently and securely.
+FinBuddy is an AI-powered Software interface that enables natural language interactions with bank accounts, facilitating intuitive financial management and empowering customers to achieve their financial objectives efficiently and securely.
 
 ### How we built it
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
