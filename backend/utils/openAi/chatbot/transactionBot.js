@@ -27,7 +27,7 @@ const getFinancialAdvice = async (chatInput) => {
         const response = await openAi.chat.completions.create({
             model: config.AZURE_CHAT_MODEL,
             messages: [{ role: 'user', content: chatInput }],
-            max_tokens: 50,
+            max_tokens: 100,
             temperature: 0.2
         })
 

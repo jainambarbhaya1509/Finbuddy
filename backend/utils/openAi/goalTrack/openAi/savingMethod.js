@@ -28,7 +28,7 @@ const getFinancialAdviceOnSavingGoal = async (chatInput) => {
 
   const userMessage = {
     role: 'user',
-    content:  `I made a plan to achive my goal I want to achive in here is the data of it ${JSON.stringify(chatInput)}, cuurency unit:- ruppes(INR) time_frame unit:- days, is theplan feasible and recommend how to improve the plan give a specific answer in 150 words`
+    content:  `I made a plan to achive my goal I want to achive in here is the data of it ${JSON.stringify(chatInput)}, cuurency unit:- ruppes(INR) time_frame unit:- days, is theplan feasible and recommend how to improve the plan give a specific answer in 290 words`
   }
 
   const messages = [systemMessage, userMessage]
@@ -36,7 +36,7 @@ const getFinancialAdviceOnSavingGoal = async (chatInput) => {
   try {
     const response = await openAi.chat.completions.create({
       messages: messages,
-      max_tokens: 100,
+      max_tokens: 300,
       temperature: prompty.model.parameters.temperature,
     })
     if ( response.choices && response.choices.length > 0) {

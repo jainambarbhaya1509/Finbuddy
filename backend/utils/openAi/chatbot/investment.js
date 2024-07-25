@@ -2,6 +2,7 @@ const fs = require('fs')
 const dotenv = require('dotenv')
 const { pool } = require('../../../config/dbConfig')
 const { openAi } = require('../../../config/openAIConfig')
+const getUserDetails = require('../../getUserData')
 
 dotenv.config()
 
@@ -13,12 +14,8 @@ const config = {
 // Function to fetch data from database
 const fetchDataFromDatabase = async (userId) => {
     try {
-        const { rows } = await pool.query(`
-      SELECT * FROM loan_type 
-      JOIN loan ON loan_type.id = loan.loan_type_id 
-      WHERE loan.account_id = $1`, [userId])
-      console.log(rows)
-        return rows
+        const data=await getUserDetails(userId)
+        return data.investment_details
     } catch (error) {
         console.error('Error fetching data from database:', error)
         throw error
@@ -46,11 +43,11 @@ const getFinancialAdvice = async (chatInput) => {
     }
 }
 
-const LoanBot = async (userId, userInput) => {
+const InvestementBot = async (userId, userInput) => {
     try {
         const data = await fetchDataFromDatabase(userId)
 
-        const chatInput = `${userInput},also state the reason of your advice, Here is the data of my loan: ${JSON.stringify(data)}`
+        const chatInput = `${userInput},also state the reason of your advice, Here is the data of my investement data in mutual funds: ${JSON.stringify(data)}`
         const response = await getFinancialAdvice(chatInput)
 
         return { message: response, error: null }
@@ -60,4 +57,4 @@ const LoanBot = async (userId, userInput) => {
     }
 }
 
-module.exports = LoanBot
+module.exports = InvestementBot

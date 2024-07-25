@@ -17,10 +17,15 @@ const mutualFundsPrompt = async (req, res) => {
             return null
         }
 
+        function toTitleCase(str) {
+            return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+        }
+        
         let jsonResponse = extractJson(gptResponse)
 
         if (jsonResponse) {
             try {
+                console.log(jsonResponse);
                 const queryData = JSON.parse(jsonResponse)
 
                 // Check for irrelevant or insufficient data
@@ -29,6 +34,7 @@ const mutualFundsPrompt = async (req, res) => {
                     queryData.risk_level !== 0 &&
                     queryData.returns_1yr !== 0
                 ) {
+                    let params = { fund_age_yr: toTitleCase(queryData.fund_age_yr) };
                     let fundAgeRange
                     switch (queryData.fund_age_yr) {
                         case 'long-term':
@@ -43,6 +49,18 @@ const mutualFundsPrompt = async (req, res) => {
                         default:
                             return res.status(400).send("Invalid fund_age_yr value")
                     }
+                    if (queryData.risk_level >= 0 && queryData.risk_level <= 2) {
+                        params = { ...params, risk_range: "Low" }
+                    } else if (queryData.risk_level >= 2 && queryData.risk_level <= 4) {
+                        params = { ...params, risk_range: "Medium" }
+                    } else params = { ...params, risk_range: "High" }
+                    
+                    //return_1styr
+                    if (queryData.returns_1yr >= 0 && queryData.returns_1yr <= 3) {
+                        params = { ...params, returns_1yr: "Low" }
+                    } else if (queryData.returns_1yr >= 4 && queryData.returns_1yr <= 6) {
+                        params = { ...params, returns_1yr: "Medium" }
+                    } else params = { ...params, returns_1yr: "High" }
 
                     // Define tolerance ranges
                     const riskTolerance = 1 // Adjust tolerance as needed
@@ -62,10 +80,10 @@ const mutualFundsPrompt = async (req, res) => {
                         ]
                     )
 
-                    return res.send(mutualData.rows) 
+                    return res.send({ ...params, mutualData: mutualData.rows })
                 }
-                else{
-                    return res.send({message:"I am an AI tool for mutual funds,please prompt specific to mutual funds"}) 
+                else {
+                    return res.send({ message: "I am an AI tool for mutual funds,please prompt specific to mutual funds" })
                 }
             } catch (parseError) {
                 // If parsing fails, fall through to returning the message directly
@@ -74,7 +92,7 @@ const mutualFundsPrompt = async (req, res) => {
         }
 
         // If the JSON object is irrelevant or not present, return the GPT response directly
-        return res.send({message:"I am an AI tool for mutual funds,please prompt specific to mutual funds"}) 
+        return res.send({ message: "I am an AI tool for mutual funds,please prompt specific to mutual funds", })
     } catch (error) {
         console.error("Error:", error)
         res.sendStatus(500)
