@@ -1,7 +1,6 @@
-const getUserDetails = require('../../utils/userInfo/getUserData')
-const getUserid = require('../../utils/userInfo/getUserid')
+const { getUserMutualFunds } = require('../../models/investement/mutualFunds/getUserMutualF')
+const getUserid = require('../../models/user/getUserid')
 const getFinancialAdvice = require('../../utils/openAi/chatbot/chatBot')
-const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF')
 
 
 const investementPrompt = async (req, res) => {

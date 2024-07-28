@@ -4,7 +4,6 @@ const saltRound=10 //number of rounds you want to encrypt higher number = high c
 
 const hashPassword=(password)=>{
     const salt=bcrypt.genSaltSync(saltRound) 
-    console.log(salt)
     return bcrypt.hashSync(password,salt)
 }
 const comparePassword=(plainPassword,hashPassword)=>{

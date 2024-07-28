@@ -1,7 +1,7 @@
 const { v4: uuidv4 } = require('uuid');
-const getUserid = require('../utils/userInfo/getUserid');
 const { pool } = require('../config/dbConfig');
 const addNotification = require('../controllers/notification.js/create');
+const getUserid = require('../models/user/getUserid');
 
 const handleConnection = (ws, onlineUsers) => {
     const connectionId = uuidv4();

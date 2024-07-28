@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
 const { pool } = require('../../config/dbConfig');
 const { comparePassword } = require('../../utils/helper');
-const getUserDetails = require('../../utils/userInfo/getUserData');
-const getUserid = require('../../utils/userInfo/getUserid');
-const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF');
+const getUserDetails = require('../../models/user/getUserData');
+const { getUserMutualFunds } = require('../../models/investement/mutualFunds/getUserMutualF');
+const getUserid = require('../../models/user/getUserid');
 
 const tokenSecret = process.env.JWTTOKENSECRET;
 
@@ -38,7 +38,6 @@ const validateCredentials = async (token, pin) => {
 const validateUser = async (req, res) => {
     try {
         //accountNumber->stores Token
-        console.log(req.body);
         const { accountNumber, pin } = req.body;
         const { valid, error } = await validateCredentials(accountNumber, pin);
 

@@ -1,6 +1,5 @@
-const getUserDetails = require("../../../../utils/userInfo/getUserData")
-const getUserid = require("../../../../utils/userInfo/getUserid")
-const { getUserMutualFunds } = require("../../../../utils/userInfo/getUserMutualF")
+const { getUserMutualFunds } = require("../../../../models/investement/mutualFunds/getUserMutualF")
+const getUserid = require("../../../../models/user/getUserid")
 
 const userMutualFunds = async (req, res) => {
     try {
@@ -13,7 +12,7 @@ const userMutualFunds = async (req, res) => {
                 id: row.id.toString(),
                 account_id: row.account_id.toString(),
                 scheme_code: row.scheme_code.toString(),
-                investment_date: row.investment_date.toISOString(),
+                investment_date: row.investment_date.toString(),
                 purchased_price: row.purchased_price.toString(),
                 investment_amount: row.investment_amount.toString(),
                 units_purchased: row.units_purchased.toString(),

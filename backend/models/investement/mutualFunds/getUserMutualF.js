@@ -1,4 +1,4 @@
-const { pool } = require("../../config/dbConfig")
+const { pool } = require("../../../config/dbConfig");
 
 const getUserMutualFunds = async (userId) => {
     const investmentDetails = await pool.query(`SELECT 

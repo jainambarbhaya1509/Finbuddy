@@ -1,6 +1,6 @@
+const getUserid = require("../../models/user/getUserid")
+const getUserPortfolio = require("../../models/user/getUserPortfolio")
 const getPortfolioAdvice = require("../../utils/openAi/chatbot/portfolioSummary")
-const getUserid = require("../../utils/userInfo/getUserid")
-const getUserPortfolio = require("../../utils/userInfo/getUserPortfolio")
 
 const portfolioSummary = async (req, res) => {
     try {
@@ -9,7 +9,6 @@ const portfolioSummary = async (req, res) => {
         const data = await getUserPortfolio(id)
         
         const gptRespose = await getPortfolioAdvice(data);
-        console.log(gptRespose.message);
 
         if (gptRespose.error) {
             console.log(gptRespose.error);

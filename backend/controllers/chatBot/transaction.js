@@ -1,7 +1,6 @@
-const getUserid = require('../../utils/userInfo/getUserid')
 const getFinancialAdvice = require("../../utils/openAi/chatbot/chatBot")
-const { pool } = require("../../config/dbConfig")
-const { getTransactionData } = require('../../utils/userInfo/getUserTransaction')
+const getTransactionData = require('../../models/transaction/getTransaction')
+const getUserid = require("../../models/user/getUserid")
 
 const TransactionPrompt = async (req, res) => {
     try {

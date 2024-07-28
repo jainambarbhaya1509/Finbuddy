@@ -1,16 +1,10 @@
 const { pool } = require("../../config/dbConfig")
-
-const getTransactionData = async (userId) => {
-    try {
-        const { rows } = await pool.query('SELECT * FROM transaction WHERE account_id=$1', [userId])
-        return rows
-    } catch (error) {
-        console.error('Error fetching data from database:', error)
-    }
-}
+const { redis } = require("../../config/redisServer")
 
 const categoriseTransactionData = async (userId) => {
     try {
+        const cacheData=await redis.get(`categoryTransaction:${userId}`)
+        if(cacheData) return JSON.parse(cacheData)
         const response = await pool.query(`
             SELECT description, COUNT(*) AS count, SUM(amount) AS total_amount
             FROM transaction
@@ -24,10 +18,10 @@ const categoriseTransactionData = async (userId) => {
             data.total_amount = parseFloat(data.total_amount, 10)
             return data
         })
-
+        redis.set(`categoryTransaction:${userId}`,JSON.stringify(data))
         return data
     } catch (error) {
         console.error('Error fetching data from database:', error)
     }
 }
-module.exports = { getTransactionData, categoriseTransactionData }
+module.exports=categoriseTransactionData

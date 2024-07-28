@@ -1,5 +1,5 @@
 const { pool } = require("../../config/dbConfig");
-const { getUserMutualFunds } = require("./getUserMutualF")
+
 const getUserDetails = async (id) => {
     try {
         // Fetch personal details

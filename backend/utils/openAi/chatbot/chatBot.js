@@ -41,7 +41,6 @@ const getFinancialAdvice = async (chatInput,data) => { //data->if transaction or
     })
     if ( response.choices && response.choices.length > 0) {
       const generatedMessage = response.choices[0].message
-      console.log('Generated Message:', generatedMessage)
       return { message: generatedMessage.content, error: null }
     } else {
       console.log('No valid response received from the API.')

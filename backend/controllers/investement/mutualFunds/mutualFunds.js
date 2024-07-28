@@ -1,31 +1,20 @@
-const { pool } = require("../../../config/dbConfig")
-const { redis } = require("../../../config/redisServer")
+const getMutalFundsData  = require("../../../models/investement/mutualFunds/getMutualFunds")
+const searchMutualFunds = require("../../../models/investement/mutualFunds/searchMutualF")
 
 const getMutualFunds = async (req, res) => {
     try {
         const mutualName  = req.params.mutualName
         if (mutualName == null) {
-
-            const cacheValue = await redis.get('mutualFunds')
-            if (cacheValue) return res.send(JSON.parse(cacheValue))
-
-            const data = await pool.query('SELECT * FROM mutual_funds')
-            redis.set('mutualFunds', JSON.stringify(data))
+            const data=await getMutalFundsData()
             return res.send(data)
         }
-        const mutualValue = await redis.get(mutualName)
-        if (mutualValue) {
-            return res.send(JSON.parse(mutualValue))
-        }
+        const dataFunds=searchMutualFunds(mutualName)
+        if (dataFunds!=null) return res.send("Not found") 
 
-        const dataFunds = await pool.query(`SELECT * FROM mutual_Funds WHERE scheme_name LIKE $1`, [`%${mutualName}%`])
-        if (dataFunds.rows!=null) return res.send("Not found") 
-        redis.set(mutualName, JSON.stringify(dataFunds.rows))
-        return res.send(dataFunds.rows)
+        return res.send(dataFunds)
     } catch (error) {
         console.log(error)
         return res.send(error)
-
     }
 }
 

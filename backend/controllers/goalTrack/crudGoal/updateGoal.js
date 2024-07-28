@@ -1,4 +1,6 @@
 const { pool } = require("../../../config/dbConfig")
+const updateGoalMapCache = require("../../../models/goal/updateGoalMapCache")
+const getUserid = require("../../../models/user/getUserid")
 
 const updateGoal = async (req, res) => {
   try {
@@ -54,7 +56,11 @@ const updateGoal = async (req, res) => {
       RETURNING *
     `
     const updateResponse = await pool.query(updateQuery, [saving_needed, remainingPendingAmount, goal_id])
-
+    
+    const {userauth}=req.headers
+    const {id}=getUserid(userauth)
+    
+    await updateGoalMapCache(id,goal_id)
     return res.send({
       time_frame: duration,
       saving_needed: parseFloat(updateResponse.rows[0].savings_needed),

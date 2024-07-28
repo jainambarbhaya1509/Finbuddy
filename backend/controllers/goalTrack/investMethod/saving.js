@@ -1,10 +1,9 @@
-const { pool } = require("../../../config/dbConfig")
-const getUserid = require("../../../utils/userInfo/getUserid")
 const getFinancialAdviceOnSavingGoal = require("../../../utils/openAi/goalTrack/openAi/savingMethod")
 const GoalPlan = require("../../../utils/openAi/goalTrack/saving")
-const { getTransactionData } = require("../../../utils/userInfo/getUserTransaction")
-const { getUserLoan } = require("../../../utils/userInfo/getUserLoan")
-const { fetchBalance } = require("../../../utils/userInfo/getUserBalance")
+const getTransactionData = require("../../../models/transaction/getTransaction")
+const getUserid = require("../../../models/user/getUserid")
+const { getUserLoan } = require("../../../models/loan/getUserLoan")
+const { fetchBalance } = require("../../../models/user/getUserBalance")
 
 
 const   saveMethod = async (req, res) => {

@@ -1,7 +1,6 @@
-const { pool } = require('../../config/dbConfig')
-const getUserid = require('../../utils/userInfo/getUserid')
 const getFinancialAdvice = require('../../utils/openAi/chatbot/chatBot')
-const { getUserLoan } = require('../../utils/userInfo/getUserLoan')
+const { getUserLoan } = require('../../models/loan/getUserLoan')
+const getUserid = require('../../models/user/getUserid')
 
 const loanPrompt = async (req, res) => {
     try {

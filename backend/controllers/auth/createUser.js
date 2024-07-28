@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { pool } = require('../../config/dbConfig');
 const { comparePassword } = require('../../utils/helper');
-const getUserDetails = require('../../utils/userInfo/getUserData');
-const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF');
+const getUserDetails = require('../../models/user/getUserData');
+const { getUserMutualFunds } = require('../../models/investement/mutualFunds/getUserMutualF');
 
 const tokenSecret = process.env.JWTTOKENSECRET;
 const tokenOptions = {

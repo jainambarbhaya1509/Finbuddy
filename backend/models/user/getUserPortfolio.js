@@ -1,12 +1,10 @@
-const { fetchBalance } = require("./getUserBalance");
-const getUserDetails = require("./getUserData");
-const { goalData } = require("./getUserGoal");
-const { getUserLoan } = require("./getUserLoan");
-const { getUserMutualFunds } = require("./getUserMutualF");
-const { getTransactionData } = require("./getUserTransaction");
+const goalData = require("../../models/goal/getUserGoal");
+const { getUserMutualFunds } = require("../../models/investement/mutualFunds/getUserMutualF");
+const { getUserLoan } = require("../../models/loan/getUserLoan");
+const getTransactionData = require("../../models/transaction/getTransaction");
+const { fetchBalance } = require("../../models/user/getUserBalance");
 
 const getUserPortfolio = async (userId) => {
-    console.log(`Userid: ${userId}`);
     try {
         const [transaction, mutualFunds, loan, goal,balance] = await Promise.all([
             getTransactionData(userId),

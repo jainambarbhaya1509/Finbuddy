@@ -1,5 +1,5 @@
-const getUserid = require("../../utils/userInfo/getUserid")
-const { getUserLoan } = require("../../utils/userInfo/getUserLoan")
+const { getUserLoan } = require("../../models/loan/getUserLoan")
+const getUserid = require("../../models/user/getUserid")
 
 const getLoan = async (req, res) => {
     try {

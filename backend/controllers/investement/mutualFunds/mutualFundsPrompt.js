@@ -7,7 +7,6 @@ const mutualFundsPrompt = async (req, res) => {
     const promptResult = await mutualFundsGpt(userInput);
     const gptResponse = promptResult.choices[0].message.content;
 
-    console.log(gptResponse);
 
     // Function to extract JSON object from the GPT response
     const extractJson = (text) => {
@@ -27,7 +26,6 @@ const mutualFundsPrompt = async (req, res) => {
 
     if (jsonResponse) {
       try {
-        console.log(jsonResponse);
         const queryData = JSON.parse(jsonResponse);
 
         // Check if any value is 0 and return the GPT response directly
