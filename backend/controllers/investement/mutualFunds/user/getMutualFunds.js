@@ -1,11 +1,12 @@
-const getUserDetails = require("../../../../utils/getUserData")
-const getUserid = require("../../../../utils/getUserid")
+const getUserDetails = require("../../../../utils/userInfo/getUserData")
+const getUserid = require("../../../../utils/userInfo/getUserid")
+const { getUserMutualFunds } = require("../../../../utils/userInfo/getUserMutualF")
 
 const userMutualFunds = async (req, res) => {
     try {
         const { userauth } = req.headers
         const { id } = getUserid(userauth)
-        const data = await getUserDetails(id)
+        const data = await getUserMutualFunds(id)
         const investmentDetails = data.investment_details.map(row => {
             return {
                 ...row,

@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const { pool } = require('../../config/dbConfig');
 const { comparePassword } = require('../../utils/helper');
-const getUserDetails = require('../../utils/getUserData');
-const getUserid = require('../../utils/getUserid');
+const getUserDetails = require('../../utils/userInfo/getUserData');
+const getUserid = require('../../utils/userInfo/getUserid');
+const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF');
 
 const tokenSecret = process.env.JWTTOKENSECRET;
 
@@ -49,8 +49,10 @@ const validateUser = async (req, res) => {
         const { id } = getUserid(accountNumber);
         const userDetails = await getUserDetails(id);
 
+        const investmentDetails=await getUserMutualFunds(id)
         return res.status(200).send({ 
             ...userDetails, 
+            ...investmentDetails,
             valid: true, 
             name: `${userDetails.personal_details.first_name} ${userDetails.personal_details.last_name}` 
         });

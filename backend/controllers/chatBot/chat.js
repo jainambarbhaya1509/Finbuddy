@@ -8,7 +8,7 @@ const chatPrompt = async (req, res) => {
         if (cacheData) {
             return res.send(JSON.parse(cacheData))
         }
-        const responseAdvice = await getFinancialAdvice(userInput)
+        const responseAdvice = await getFinancialAdvice(userInput,"")
         redis.set(userInput,JSON.stringify(responseAdvice))
         return res.send(responseAdvice)
     } catch (error) {

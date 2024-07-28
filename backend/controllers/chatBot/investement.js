@@ -1,5 +1,8 @@
-const getUserid = require('../../utils/getUserid')
-const InvestementBot = require('../../utils/openAi/chatbot/investment')
+const getUserDetails = require('../../utils/userInfo/getUserData')
+const getUserid = require('../../utils/userInfo/getUserid')
+const getFinancialAdvice = require('../../utils/openAi/chatbot/chatBot')
+const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF')
+
 
 const investementPrompt = async (req, res) => {
     try {
@@ -7,7 +10,15 @@ const investementPrompt = async (req, res) => {
         const { userInput } = req.params
         const decodeData = getUserid(token)
 
-        const botResponse = await InvestementBot(decodeData.id, userInput)
+        const { investment_details } = await getUserMutualFunds(decodeData.id)
+        const investment = investment_details.map((invested) => {
+            invested.current_value = Number(invested.current_value)
+            invested.total_invested_amount = Number(invested.total_invested_amount)
+            invested.total_current_value = Number(invested.total_current_value)
+            return invested
+        })
+
+        const botResponse = await getFinancialAdvice(userInput, `Here is my investement data ${JSON.stringify(investment)}`)
         res.send(botResponse)
     } catch (error) {
         console.error('Error:', error)

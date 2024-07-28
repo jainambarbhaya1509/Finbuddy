@@ -1,5 +1,5 @@
 const { pool } = require("../../config/dbConfig")
-const getUserid = require("../../utils/getUserid")
+const getUserid = require("../../utils/userInfo/getUserid")
 
 const readNotification = async (req, res) => {
     try {

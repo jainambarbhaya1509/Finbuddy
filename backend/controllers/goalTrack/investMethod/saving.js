@@ -1,46 +1,11 @@
 const { pool } = require("../../../config/dbConfig")
-const getUserid = require("../../../utils/getUserid")
+const getUserid = require("../../../utils/userInfo/getUserid")
 const getFinancialAdviceOnSavingGoal = require("../../../utils/openAi/goalTrack/openAi/savingMethod")
 const GoalPlan = require("../../../utils/openAi/goalTrack/saving")
+const { getTransactionData } = require("../../../utils/userInfo/getUserTransaction")
+const { getUserLoan } = require("../../../utils/userInfo/getUserLoan")
+const { fetchBalance } = require("../../../utils/userInfo/getUserBalance")
 
-const fetchLoan = async (userId) => {
-    try {
-        const { rows } = await pool.query(
-            'SELECT * FROM loan JOIN loan_type ON loan.loan_type_id = loan_type.id WHERE loan.account_id = $1',
-            [userId]
-        )
-        return rows
-    } catch (error) {
-        console.error("Error fetching loan data:", error)
-        throw error
-    }
-}
-
-const fetchTransaction = async (userId) => {
-    try {
-        const { rows } = await pool.query(
-            'SELECT * FROM transaction WHERE account_id = $1',
-            [userId]
-        )
-        return rows
-    } catch (error) {
-        console.error("Error fetching transaction data:", error)
-        throw error
-    }
-}
-
-const fetchBalance = async (userId) => {
-    try {
-        const { rows } = await pool.query(
-            'SELECT balance FROM account WHERE id = $1',
-            [userId]
-        )
-        return rows[0].balance
-    } catch (error) {
-        console.error("Error fetching balance data:", error)
-        throw error
-    }
-}
 
 const   saveMethod = async (req, res) => {
     try {
@@ -49,8 +14,8 @@ const   saveMethod = async (req, res) => {
         const decodedData = getUserid(userauth)
 
         const [loan_data, transaction_data, balance_data] = await Promise.all([
-            loan ? fetchLoan(decodedData.id) : Promise.resolve([]),
-            transaction ? fetchTransaction(decodedData.id) : Promise.resolve([]),
+            loan ? getUserLoan(decodedData.id) : Promise.resolve([]),
+            transaction ? getTransactionData(decodedData.id) : Promise.resolve([]),
             balance ? fetchBalance(decodedData.id) : Promise.resolve(0)
         ])
 

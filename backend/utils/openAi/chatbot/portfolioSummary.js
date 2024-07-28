@@ -15,7 +15,7 @@ try {
   throw error // Throw error to handle it in the caller or logging mechanism
 }
 
-const getFinancialAdvice = async (chatInput,data) => { //data->if transaction or anything
+const getPortfolioAdvice = async (data) => { //data->if transaction or anything
   if (!prompty || !prompty.model || !prompty.model.parameters) {
     console.error('Invalid prompty structure: model or parameters are missing or undefined.')
     return { message: null, error: 'Invalid prompty structure' }
@@ -28,7 +28,7 @@ const getFinancialAdvice = async (chatInput,data) => { //data->if transaction or
 
   const userMessage = {
     role: 'user',
-    content: `${chatInput} and ${data} and currency unit is rupees (INR), also state the reason of your advice in maximum  ${max_tokens} tokens only`
+    content: `How can I improve my finance here is the data ${JSON.stringify(data)} and currency unit is rupees (INR), also state the reason of your advice and give a specific answer not in general terms, in maximum  ${max_tokens} tokens only`
   }
 
   const messages = [systemMessage, userMessage]
@@ -53,4 +53,4 @@ const getFinancialAdvice = async (chatInput,data) => { //data->if transaction or
   }
 }
 
-module.exports = getFinancialAdvice
+module.exports = getPortfolioAdvice

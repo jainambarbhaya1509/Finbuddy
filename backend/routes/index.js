@@ -9,6 +9,7 @@ const chatRoute = require('./chatBot')
 const validateUserMiddleware = require('../middleware/auth')
 const goalTrackRoute = require('./goalTrack')
 const notificationRoute = require('./notifications')
+const loanRoute = require('./loan')
 
 // Mount authRoute without middleware
 indexRoute.use('/auth', authRoute)
@@ -22,5 +23,6 @@ indexRoute.use('/transaction', transactionRoute)
 indexRoute.use('/chatBot', chatRoute)
 indexRoute.use('/goalTrack', goalTrackRoute)
 indexRoute.use('/notifications', notificationRoute)
+indexRoute.use('/loan', loanRoute)
 
 module.exports = indexRoute

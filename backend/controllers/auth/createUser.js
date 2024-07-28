@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { pool } = require('../../config/dbConfig');
 const { comparePassword } = require('../../utils/helper');
-const getUserDetails = require('../../utils/getUserData');
+const getUserDetails = require('../../utils/userInfo/getUserData');
+const { getUserMutualFunds } = require('../../utils/userInfo/getUserMutualF');
 
 const tokenSecret = process.env.JWTTOKENSECRET;
 const tokenOptions = {
@@ -52,8 +53,8 @@ const createUser = async (req, res) => {
 
         const token = generateToken(userId);
         const userDetails = await getUserDetails(userId);
-        
-        return res.status(200).json({ ...userDetails, valid: true, token: token, name: userName });
+        const investmentDetails=await getUserMutualFunds(userId)
+        return res.status(200).json({ ...userDetails,...investmentDetails, valid: true, token: token, name: userName });
     } catch (error) {
         console.error("Error creating user:", error);
         return res.status(500).json({ error: "Something went wrong" });

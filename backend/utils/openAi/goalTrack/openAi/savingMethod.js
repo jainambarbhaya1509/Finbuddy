@@ -5,7 +5,7 @@ const { openAi } = require('../../../../config/openAIConfig')
 
 const promptyPath = path.resolve(__dirname, '../../chatbot/chat.prompty')
 let prompty
-
+const max_tokens=process.env.MAX_TOKENS_PROMPT
 try {
   const file = fs.readFileSync(promptyPath, 'utf8')
   const documents = yaml.parseAllDocuments(file)
@@ -28,7 +28,7 @@ const getFinancialAdviceOnSavingGoal = async (chatInput) => {
 
   const userMessage = {
     role: 'user',
-    content:  `I made a plan to achive my goal I want to achive in here is the data of it ${JSON.stringify(chatInput)}, cuurency unit:- ruppes(INR) time_frame unit:- days, is theplan feasible and recommend how to improve the plan give a specific answer in 290 words`
+    content:  `I made a plan to achive my goal I want to achive in here is the data of it ${JSON.stringify(chatInput)}, cuurency unit:- ruppes(INR) time_frame unit:- days, is theplan feasible and recommend how to improve the plan give a specific answer in ${max_tokens} words`
   }
 
   const messages = [systemMessage, userMessage]
