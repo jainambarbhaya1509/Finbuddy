@@ -1,8 +1,12 @@
 const { pool } = require("../../config/dbConfig");
+const { redis } = require("../../config/redisServer");
 
 const getUserDetails = async (id) => {
     try {
         // Fetch personal details
+        const cacheData=await redis.get(`userDetails:${id}`)
+        if(cacheData) return JSON.parse(cacheData);
+
         const personalDetailsQuery = `
             SELECT account.account_number, account.balance, customer.first_name, customer.last_name
             FROM account
@@ -17,6 +21,10 @@ const getUserDetails = async (id) => {
         // Parse balance to float
         const personalDetails = personalDetailsResult.rows[0];
         personalDetails.balance = parseFloat(personalDetails.balance);
+
+        redis.set(`userDetails:${id}`,JSON.stringify({
+            personal_details: personalDetails
+        }))
 
         return {
             personal_details: personalDetails

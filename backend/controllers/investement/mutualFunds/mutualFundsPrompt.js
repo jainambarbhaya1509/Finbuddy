@@ -21,7 +21,6 @@ const mutualFundsPrompt = async (req, res) => {
     const toTitleCase = (str) => {
       return str.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
     };
-
     let jsonResponse = extractJson(gptResponse);
 
     if (jsonResponse) {
@@ -30,7 +29,7 @@ const mutualFundsPrompt = async (req, res) => {
 
         // Check if any value is 0 and return the GPT response directly
         if (queryData.fund_age_yr === 0 && queryData.risk_level === 0 && queryData.returns_1yr === 0) {
-          return res.send({ message: gptResponse });
+          return res.send({ message: "I am an AI tool for mutual funds, please prompt specific to mutual funds" });
         }
 
         let params = { fund_age_yr: toTitleCase(queryData.fund_age_yr) };
@@ -86,7 +85,6 @@ const mutualFundsPrompt = async (req, res) => {
             queryData.returns_1yr + returnsTolerance
           ]
         );
-
         return res.send({ ...params, mutualData: mutualData.rows });
       } catch (parseError) {
         // If parsing fails, fall through to returning the message directly

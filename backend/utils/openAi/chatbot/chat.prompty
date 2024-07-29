@@ -6,7 +6,7 @@ model:
     configuration:
         type: azure_openai
     parameters:
-        max_tokens: 50
+        max_tokens: 10
         temperature: 0.2
 inputs:
     chat_input:

@@ -7,7 +7,6 @@ const portfolioSummary = async (req, res) => {
         const {userauth}=req.headers
         const {id}=getUserid(userauth)
         const data = await getUserPortfolio(id)
-        
         const gptRespose = await getPortfolioAdvice(data);
 
         if (gptRespose.error) {

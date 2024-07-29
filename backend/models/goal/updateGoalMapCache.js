@@ -4,7 +4,7 @@ const { redis } = require("../../config/redisServer")
 const updateGoalMapCache = async (userId, goal_id) => {
     try {
         const { rows } = await pool.query('SELECT * FROM goal WHERE account_id=$1', [userId])
-        redis.set(`goal:${userId}`, JSON.stringify(rows))
+        await redis.set(`goal:${userId}`, JSON.stringify(rows))
 
         const data = await pool.query(`
             SELECT goal.id as goal_id, goal.name, goal.goal_amount, goal.time_frame, goal.savings_needed,goal.completed, 
@@ -15,7 +15,7 @@ const updateGoalMapCache = async (userId, goal_id) => {
             WHERE goal.id = $1
           `, [goal_id])
 
-        redis.set(`goalMap:${goal_id}`, JSON.stringify(data.rows))
+        await redis.set(`goalMap:${goal_id}`, JSON.stringify(data.rows))
     } catch (error) {
         console.log(error);
     }

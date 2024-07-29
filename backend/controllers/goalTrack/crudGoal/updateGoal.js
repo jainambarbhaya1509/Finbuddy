@@ -5,6 +5,8 @@ const getUserid = require("../../../models/user/getUserid")
 const updateGoal = async (req, res) => {
   try {
     const { goal_id, saved_amount, goal_amount, pending_amount, time_frame, interval } = req.body
+    const { userauth } = req.headers
+    const { id } = getUserid(userauth)
 
     if (goal_id === undefined || saved_amount === undefined || goal_amount === undefined || time_frame === undefined || interval === undefined) {
       return res.status(400).send({ error: "Missing Parameters" })
@@ -13,6 +15,7 @@ const updateGoal = async (req, res) => {
     // Check if saved_amount is a valid number
     const savedAmount = parseFloat(saved_amount)
     if (isNaN(savedAmount) || savedAmount <= 0) {
+      await updateGoalMapCache(id, goal_id)
       return res.status(400).send({ error: "Invalid saved_amount" })
     }
 
@@ -41,10 +44,11 @@ const updateGoal = async (req, res) => {
     // Check if saving_needed is less than or equal to zero
     if (saving_needed <= 0) {
       await pool.query(`UPDATE goal SET savings_needed = $1, pending_amount = $2 WHERE id = $3`, [0, 0, goal_id])
+      await updateGoalMapCache(id, goal_id)
       return res.send({
         time_frame: duration,
-        saving_needed: 0,
-        pending_amount: 0
+        saving_needed: '0',
+        pending_amount: '0'
       })
     }
 
@@ -56,11 +60,9 @@ const updateGoal = async (req, res) => {
       RETURNING *
     `
     const updateResponse = await pool.query(updateQuery, [saving_needed, remainingPendingAmount, goal_id])
-    
-    const {userauth}=req.headers
-    const {id}=getUserid(userauth)
-    
-    await updateGoalMapCache(id,goal_id)
+
+
+    await updateGoalMapCache(id, goal_id)
     return res.send({
       time_frame: duration,
       saving_needed: parseFloat(updateResponse.rows[0].savings_needed),

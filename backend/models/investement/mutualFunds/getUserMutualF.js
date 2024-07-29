@@ -1,6 +1,10 @@
 const { pool } = require("../../../config/dbConfig");
+const { redis } = require("../../../config/redisServer");
 
 const getUserMutualFunds = async (userId) => {
+    const cacheData=await redis.get(`userMutualFunds:${userId}`)
+    if(cacheData) return JSON.parse(cacheData)
+
     const investmentDetails = await pool.query(`SELECT 
                 mutual_funds_investement.*,
                 mutual_funds.scheme_name as fund_name,
@@ -18,7 +22,13 @@ const getUserMutualFunds = async (userId) => {
         totalInvestedAmount = parseFloat(investmentDetails.rows[0].total_invested_amount);
         totalCurrentValue = parseFloat(investmentDetails.rows[0].total_current_value);
     }
-
+    redis.set(`userMutualFunds:${userId}`,JSON.stringify( {
+        investment_details: investmentDetails.rows,
+        totals: {
+            total_invested_amount: totalInvestedAmount,
+            total_current_value: totalCurrentValue,
+        },
+    }))
     return {
         investment_details: investmentDetails.rows,
         totals: {

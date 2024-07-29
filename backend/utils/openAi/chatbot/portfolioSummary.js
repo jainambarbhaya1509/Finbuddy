@@ -23,12 +23,12 @@ const getPortfolioAdvice = async (data) => { //data->if transaction or anything
 
   const systemMessage = {
     role: 'system',
-    content: 'You are an AI assistant who acts as a financial advisor' // Manually define or retrieve system response
+    content: 'You are an AI assistant who acts as a financial advisor, on the basis of given data like transaction,loan, investment and goals upon which you have to create a portfolio summary for user to manage his overall finance' // Manually define or retrieve system response
   }
 
   const userMessage = {
     role: 'user',
-    content: `How can I improve my finance here is the data ${JSON.stringify(data)} and currency unit is rupees (INR), also state the reason of your advice and give a specific answer not in general terms, in maximum  ${max_tokens} tokens only`
+    content: `How can I improve my finance here is the data ${JSON.stringify(data)} and currency unit is rupees (INR), also state the reason of your advice, in maximum  ${max_tokens} tokens only`
   }
 
   const messages = [systemMessage, userMessage]
