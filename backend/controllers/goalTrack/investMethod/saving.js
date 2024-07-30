@@ -11,7 +11,7 @@ const   saveMethod = async (req, res) => {
         const { goal_amount, time_frame, month_income, loan, transaction, balance } = req.body
         const { userauth } = req.headers
         const decodedData = getUserid(userauth)
-
+        
         const [loan_data, transaction_data, balance_data] = await Promise.all([
             loan ? getUserLoan(decodedData.id) : Promise.resolve([]),
             transaction ? getTransactionData(decodedData.id) : Promise.resolve([]),

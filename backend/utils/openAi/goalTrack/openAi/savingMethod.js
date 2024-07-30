@@ -2,10 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
 const { openAi } = require('../../../../config/openAIConfig')
+const { MAX_TOKENS } = require('../../maxToken')
 
 const promptyPath = path.resolve(__dirname, '../../chatbot/chat.prompty')
 let prompty
-const max_tokens=process.env.MAX_TOKENS_PROMPT
+const max_tokens=MAX_TOKENS
 try {
   const file = fs.readFileSync(promptyPath, 'utf8')
   const documents = yaml.parseAllDocuments(file)
@@ -36,7 +37,7 @@ const getFinancialAdviceOnSavingGoal = async (chatInput) => {
   try {
     const response = await openAi.chat.completions.create({
       messages: messages,
-      max_tokens: 300,
+      max_tokens: max_tokens,
       temperature: prompty.model.parameters.temperature,
     })
     if ( response.choices && response.choices.length > 0) {

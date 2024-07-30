@@ -2,10 +2,11 @@ const fs = require('fs')
 const path = require('path')
 const yaml = require('yaml')
 const { openAi } = require('../../../config/openAIConfig')
+const { MAX_TOKENS } = require('../maxToken')
 
 const promptyPath = path.resolve(__dirname, './chat.prompty')
 let prompty
-const max_tokens=Number(process.env.MAX_TOKEN_PROMPT)
+const max_tokens=MAX_TOKENS
 try {
   const file = fs.readFileSync(promptyPath, 'utf8')
   const documents = yaml.parseAllDocuments(file)

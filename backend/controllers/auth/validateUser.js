@@ -4,6 +4,7 @@ const { comparePassword } = require('../../utils/helper');
 const getUserDetails = require('../../models/user/getUserData');
 const { getUserMutualFunds } = require('../../models/investement/mutualFunds/getUserMutualF');
 const getUserid = require('../../models/user/getUserid');
+const investmentPortfolio = require('../../models/investement/investmentPortfolio');
 
 const tokenSecret = process.env.JWTTOKENSECRET;
 
@@ -48,7 +49,7 @@ const validateUser = async (req, res) => {
         const { id } = getUserid(accountNumber);
         const userDetails = await getUserDetails(id);
 
-        const investmentDetails=await getUserMutualFunds(id)
+        const investmentDetails = await investmentPortfolio(accountNumber, id)
         return res.status(200).send({ 
             ...userDetails, 
             ...investmentDetails,

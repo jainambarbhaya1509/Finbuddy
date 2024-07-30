@@ -3,15 +3,17 @@ const { getUserMutualFunds } = require("../../models/investement/mutualFunds/get
 const { getUserLoan } = require("../../models/loan/getUserLoan");
 const getTransactionData = require("../../models/transaction/getTransaction");
 const { fetchBalance } = require("../../models/user/getUserBalance");
+const getStock = require("../investement/stock/getUserStock");
 
 const getUserPortfolio = async (userId) => {
     try {
-        const [transaction, mutualFunds, loan, goal,balance] = await Promise.all([
+        const [transaction, mutualFunds, loan, goal,balance,stock] = await Promise.all([
             getTransactionData(userId),
             getUserMutualFunds(userId),
             getUserLoan(userId),
             goalData(userId),
-            fetchBalance(userId)
+            fetchBalance(userId),
+            getStock(userId)
         ]);
 
         return {
@@ -19,7 +21,8 @@ const getUserPortfolio = async (userId) => {
             mutualFunds,
             loan,
             goal,
-            balance
+            balance,
+            stock
         };
     } catch (error) {
         console.error("Error fetching user portfolio data:", error);
