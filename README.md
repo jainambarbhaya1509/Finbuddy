@@ -10,7 +10,7 @@
 
 <a id="content"></a>
 ## About
-### Inspiration
+### 🌟 Inspiration
 - In the evolving landscape of financial advisory services, there exists a critical need to leverage `Generative AI` technology to provide customers with personalized, data-driven financial advice.
 
 - The challenge lies in effectively analyzing vast amounts of customer financial data and dynamic market trends to generate tailored investment strategies that adapt to changing financial conditions and individual goals in real-time.
@@ -24,32 +24,36 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 
 <!-- FEATURES -->
 <a id="features"></a>
-## Features
-- **Banking Optimization Bot (BOB):** The chatbot utilizes advanced NLP to understand and interpret user queries. For example, a user might ask, "Show me my spending trends for the last six months" or "How much did I spend on groceries in May?"
+## 💡 Features
+- **🤖 Banking Optimization Bot (BOB):** The chatbot utilizes advanced NLP to understand and interpret user queries. For example, a user might ask, "Show me my spending trends for the last six months" or "How much did I spend on groceries in May?"
   
-- **Goal Track:** It is a feature designed to help you set, monitor, and achieve your financial objectives. Whether you're saving for a major purchase, planning a vacation, or building an emergency fund, Goal Track allows you to define specific goals and track your progress in real time with notifications.
+- **🎯 Goal Track:** It is a feature designed to help you set, monitor, and achieve your financial objectives. Whether you're saving for a major purchase, planning a vacation, or building an emergency fund, Goal Track allows you to define specific goals and track your progress in real time with notifications.
 
-- **Investment Advisor:** Your personal AI-driven financial consultant, dedicated to optimizing your investment portfolio. By analyzing your financial data, market trends, and risk preferences, this feature provides tailored investment recommendations.
+- **💼  Investment Advisor:** Your personal AI-driven financial consultant, dedicated to optimizing your investment portfolio. By analyzing your financial data, market trends, and risk preferences, this feature provides tailored investment recommendations.
 
-- **Personalized advice:** AI-driven financial advice will be tailored to individual users' goals, risk tolerance, and financial situation, providing a personalized experience.
+- **📝 Personalized advice:** AI-driven financial advice will be tailored to individual users' goals, risk tolerance, and financial situation, providing a personalized experience.
 
-- **Real-time guidance:** Users will receive timely and relevant advice, enabling them to make informed decisions quickly.
+- **⏱️ Real-time guidance:** Users will receive timely and relevant advice, enabling them to make informed decisions quickly.
 
-- **Simplified financial management:** Integration with budgeting tools, debt management, and investment services will streamline financial planning and management.
+- **📈 Simplified financial management:** Integration with budgeting tools, debt management, and investment services will streamline financial planning and management.
 
-- **User-friendly interface:** An intuitive and user-friendly design will make financial planning and management accessible and engaging.
+- **🖥️ User-friendly interface:** An intuitive and user-friendly design will make financial planning and management accessible and engaging.
   
-- **Cloud-based infrastructure:** Reduces the need for on-premise infrastructure and enables easy scalability.
+- **☁️ Cloud-based infrastructure:** Reduces the need for on-premise infrastructure and enables easy scalability.
 
-- **Modular design:** Allows for easy replacement or update of individual components without affecting the entire system.
+- **🔧 Modular design:** Allows for easy replacement or update of individual components without affecting the entire system.
 
-- **Continuous learning:** AI models are trained on customer data and feedback, improving the accuracy and effectiveness of the advice over time.
+- **📚 Continuous learning:** AI models are trained on customer data and feedback, improving the accuracy and effectiveness of the advice over time.
 
-- **Secure API integration:** Ensure that all APIs used in the application are secure and follow industry best practices for authentication and encryption. Regularly update and patch APIs to protect against vulnerabilities.
+- **🔒 Secure API integration:** Ensure that all APIs used in the application are secure and follow industry best practices for authentication and encryption. Regularly update and patch APIs to protect against vulnerabilities.
 
-- **User session management:** Implement secure session management practices, including automatic session timeout and secure session tokens, to prevent unauthorized access to user accounts.
+- **🔐 User session management:** Implement secure session management practices, including automatic session timeout and secure session tokens, to prevent unauthorized access to user accounts.
 
-- **End-to-End Encryption:** Ensure all data transmitted between the user's device and your servers is encrypted using protocols like TLS (Transport Layer Security).
+- **🔑 End-to-End Encryption:** Ensure all data transmitted between the user's device and your servers is encrypted using protocols like TLS (Transport Layer Security).
+
+-  **📊 Invested Stocks Analysis:**
+
+-  **📑 Portfolio Summary:** 
 
 <!-- TECH STACK -->
 <a id="tech-stack"></a>
@@ -72,7 +76,15 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 <a id="run"></a>
 ## Setup
 ### Frontend
+1. **Download the APK**
+   - Download the following APK file to your phone: [APK Download Link](https://finbuddy.s3.eu-north-1.amazonaws.com/finbuddy-v1.0.0.apk)
 
+2. **Install the APK**
+   - Open the downloaded APK file and follow the on-screen instructions to install the application on your phone.
+
+3. **Launch the Application**
+   - Once installed, follow the backend instructions for getting started with the application
+  
 ### Backend
 
 <!-- FUTURE SCOPE -->
