@@ -1,0 +1,68 @@
+# Flutter/Dart/Pub related
+.flutter-plugins
+.flutter-plugins-dependencies
+.flutter-plugins-dependencies
+.flutter-plugins
+.packages
+pubspec.lock
+build/
+dart_tool/
+.idea/
+.vscode/
+*.iml
+
+# Android related
+*.keystore
+*.jks
+*.apk
+*.aab
+.gradle/
+local.properties
+*.log
+captures/
+
+# iOS related
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+*.xcscheme
+*.xctest
+*.swiftmodule
+*.swiftinterface
+*.dSYM/
+*.ipa
+*.app
+DerivedData/
+Pods/
+Podfile.lock
+
+# macOS related
+*.xcworkspace
+*.xcuserstate
+*.xcuserdata
+*.xcscheme
+*.xctest
+*.swiftmodule
+*.swiftinterface
+*.dSYM/
+build/
+*.app
+*.ipa
+*.DS_Store
+
+# Windows related
+*.suo
+*.user
+*.userosscache
+*.suo
+*.ncb
+*.sdf
+*.opensdf
+*.vssscc
+*.vsscc
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
