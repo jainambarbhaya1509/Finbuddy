@@ -83,7 +83,7 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 ## Setup
 ### Frontend
 1. **Download the APK**
-   - Download the following APK file to your phone: [APK Download Link](https://shorturl.at/oCuEH)
+   - Download the following APK file to your phone: [APK Download Link](https://finbuddyapp.blob.core.windows.net/finbuddy/finbuddy-v1.0.0.apk?sp=r&st=2024-08-01T17:00:57Z&se=2024-08-02T01:00:57Z&spr=https&sv=2022-11-02&sr=b&sig=BWkNo4L57EmAvjrU2LO5%2BCpLqYn980S617PnhIhF2jg%3D)
 
 2. **Install the APK**
    - Open the downloaded APK file and follow the on-screen instructions to install the application on your phone.
