@@ -29,6 +29,8 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 <a id="features"></a>
 ## 💡 Features
 
+[Watch the video](https://drive.google.com/file/d/1rv3MvlwFwAqbjGQMYKqoyePorKtBun4w/view?usp=drive_link)
+
 - **🤖 Banking Optimization Bot (BOB):** The chatbot utilizes advanced NLP to understand and interpret user queries. For example, a user might ask, "Show me my spending trends for the last six months" or "How much did I spend on groceries in May?"
   
 - **🎯 Goal Track:** It is a feature designed to help you set, monitor, and achieve your financial objectives. Whether you're saving for a major purchase, planning a vacation, or building an emergency fund, Goal Track allows you to define specific goals and track your progress in real time with notifications.
