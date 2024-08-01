@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:bobhack/constants.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class WebSocketManager {
   }
 
   WebSocketChannel? _channel;
-  final String _webSocketUrl = 'ws://rapid-raptor-slightly.ngrok-free.app';
+  final String _webSocketUrl = 'ws://app-server.livelycliff-707ceb90.eastus.azurecontainerapps.io';
 
   WebSocketChannel? get channel => _channel;
 
