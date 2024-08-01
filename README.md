@@ -1,4 +1,6 @@
 # FinBuddy - Financial Advisory App
+![Showreel-Grid-Mobile- remix](https://github.com/user-attachments/assets/b107272e-5679-4e2a-b135-4db5d17583d8)
+
 
 **Table of content:**
 - [About](#content)
@@ -10,6 +12,7 @@
 
 <a id="content"></a>
 ## About
+
 ### 🌟 Inspiration
 - In the evolving landscape of financial advisory services, there exists a critical need to leverage `Generative AI` technology to provide customers with personalized, data-driven financial advice.
 
@@ -25,6 +28,7 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 <!-- FEATURES -->
 <a id="features"></a>
 ## 💡 Features
+
 - **🤖 Banking Optimization Bot (BOB):** The chatbot utilizes advanced NLP to understand and interpret user queries. For example, a user might ask, "Show me my spending trends for the last six months" or "How much did I spend on groceries in May?"
   
 - **🎯 Goal Track:** It is a feature designed to help you set, monitor, and achieve your financial objectives. Whether you're saving for a major purchase, planning a vacation, or building an emergency fund, Goal Track allows you to define specific goals and track your progress in real time with notifications.
