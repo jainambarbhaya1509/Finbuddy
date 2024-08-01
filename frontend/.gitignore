@@ -6,7 +6,7 @@
 .packages
 pubspec.lock
 build/
-dart_tool/
+.dart_tool/
 .idea/
 .vscode/
 *.iml
