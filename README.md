@@ -51,9 +51,9 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 
 - **🔑 End-to-End Encryption:** Ensure all data transmitted between the user's device and your servers is encrypted using protocols like TLS (Transport Layer Security).
 
--  **📊 Invested Stocks Analysis:**
+-  **📊 Invested Stocks Analysis:** Fetches the latest stock news and provides recommendations based on news sentiment.
 
--  **📑 Portfolio Summary:** 
+-  **📑 Portfolio Summary:** Offers an overview of the user's portfolio with key metrics and performance insights.
 
 <!-- TECH STACK -->
 <a id="tech-stack"></a>
@@ -82,14 +82,14 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 2. **Install the APK**
    - Open the downloaded APK file and follow the on-screen instructions to install the application on your phone.
 
-3. **Launch the Application**
-   - Once installed, follow the backend instructions for getting started with the application
-  
-### Backend
+3. **Launch the docker for backend services**
+
 
 <!-- FUTURE SCOPE -->
 <a id="future-scope"></a>
-### What's next for FinBuddy
+## 🔮 What's Next for FinBuddy
+We aim to forge partnerships with banks and financial institutions to enhance our ecosystem. This will include seamless API integrations for real-time account data, personalized banking services, and expanded investment options.
+
 
 <!-- CONTRIBUTORS -->
 <a id="contributors"></a>
@@ -100,6 +100,3 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 </a>
 </p>
 
-
-<!-- LICENSE -->
-## License
