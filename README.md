@@ -101,8 +101,8 @@ We aim to forge partnerships with banks and financial institutions to enhance ou
 <a id="contributors"></a>
 ## Contributors
 <p align="start">
-<a  href="https://github.com/anuskhatri/Financial-App/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=anuskhatri/Financial-App"/>
+<a  href="https://github.com/anuskhatri/FinBuddy/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=anuskhatri/FinBuddy"/>
 </a>
 </p>
 
