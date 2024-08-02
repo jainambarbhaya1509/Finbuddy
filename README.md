@@ -89,8 +89,8 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
    - Open the downloaded APK file and follow the on-screen instructions to install the application on your phone.
 
 3. **Enter the following credentials for login**
-   - `Account Number: 1111 1111 1111 1111`
-   - `PIN: 2210`
+   - `Account Number: 1111 1111 1111 1112`
+   - `PIN: 2212`
 
 
 <!-- FUTURE SCOPE -->
