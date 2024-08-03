@@ -90,7 +90,7 @@ FinBuddy is an AI-powered Software interface that enables natural language inter
 
 3. **Enter the following credentials for login**
    - `Account Number: 1111 1111 1111 1111`
-   - `PIN: 2212`
+   - `PIN: 2210`
 
 
 <!-- FUTURE SCOPE -->
