@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import requests
 from bs4 import BeautifulSoup
 import yfinance as yf
-from decimal import Decimal, getcontext
+from decimal import Decimal
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from ollama import chat
@@ -151,7 +151,7 @@ def fetch_stock_price():
 @app.route('/fetch_portfolio', methods=['POST'])
 def fetch_portfolio():
     data = request.get_json()
-    url = 'https://pleasant-nearby-hermit.ngrok-free.app/api/investement/getUserstock'
+    url = 'https://wondrous-ray-lightly.ngrok-free.app/api/investement/getUserstock'
     
     # Extract 'userauth' from the request body
     userauth = data.get('userauth')
